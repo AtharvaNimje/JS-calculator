@@ -8,12 +8,13 @@ let undoButton = document.querySelector('#undo');
 
 let value = '';
 let operatorArr = [];
+let prevValue = '';
 
 for (button of numButtons) {
     button.addEventListener('click', (e) => {
         let num = e.target.textContent;
-        if(num === '.'){
-            if(!value.includes('.')) {
+        if (num === '.') {
+            if (!value.includes('.')) {
                 value += num;
             }
         } else {
@@ -28,6 +29,9 @@ for (button of opButtons) {
     button.addEventListener('click', (e) => {
         let operator = e.target.textContent;
         operatorArr.push(value, operator);
+        value = value + ' ' + operator;
+        screenOp(value);
+        prevValue = value;
         value = '';
         console.log(operatorArr);
     })
@@ -38,6 +42,7 @@ equalButton.addEventListener('click', (e) => {
 
     while (operatorArr.length >= 3) {
         result = operate(Number(operatorArr[0]), operatorArr[1], Number(operatorArr[2]));
+        result = Math.round( ( result + Number.EPSILON ) * 100000 ) / 100000;
         value = '';
         operatorArr.splice(0, 3);
         operatorArr.splice(0, 0, result)
@@ -51,9 +56,18 @@ clearButton.addEventListener('click', () => {
     window.location.reload();
 })
 
-undoButton.addEventListener('click', ()=> {
-    value = value.slice(0,-1);
-    console.log(value);
+undoButton.addEventListener('click', () => {
+    if (operatorArr[operatorArr.length - 1] === '+' || operatorArr[operatorArr.length - 1] === '-'
+        || operatorArr[operatorArr.length - 1] === '*' || operatorArr[operatorArr.length - 1] === '/') {
+        operatorArr = operatorArr.splice(0, operatorArr.length - 2)
+        console.log(operatorArr)
+        value = prevValue;
+        value = value.slice(0, -2)
+        console.log(value);
+    } else {
+        value = value.slice(0, -1);
+        console.log(value);
+    }
     screenOp(value);
 })
 
@@ -82,7 +96,7 @@ function operate(num1, op, num2) {
     switch (op) {
         case '+':
             r = add(num1, num2);
-            
+
             break;
         case '-':
             r = subtract(num1, num2);
@@ -91,7 +105,7 @@ function operate(num1, op, num2) {
             r = multiply(num1, num2);
             break;
         case '/':
-            r = num2!==0 ? divide(num1, num2): 'ERROR';
+            r = num2 !== 0 ? divide(num1, num2) : 'ERROR';
             break;
         default:
             console.log('Invalid operator');
