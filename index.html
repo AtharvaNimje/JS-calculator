@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@200;400;700&display=swap" rel="stylesheet">
@@ -15,34 +15,35 @@
 
 <body>
     <div class="main">
+        <h1>CALCULATOR</h1>
         <div class="calculator">
             <div class="screen">
-                <h1>9999999.99</h1>
+                <h1>0</h1>
             </div>
             <div class="buttons">
                 <div></div>
                 <button id="clear" class="not-digits">C</button>
-                <button id="undo" class="not-digits">Undo</button>
-                <button id="divide" class="not-digits">/</button>
+                <button style="font-size: 1em;" id="undo" class="not-digits">⌫</button>
+                <button class="not-digits operator">/</button>
 
-                <button id="seven">7</button>
-                <button id="eight">8</button>
-                <button id="nine">9</button>
-                <button id="multiply" class="not-digits">*</button>
+                <button class="numbers">7</button>
+                <button class="numbers">8</button>
+                <button class="numbers">9</button>
+                <button class="not-digits operator">*</button>
 
-                <button id="four">4</button>
-                <button id="five">5</button>
-                <button id="six">6</button>
-                <button id="subtract" class="not-digits">-</button>
+                <button class="numbers">4</button>
+                <button class="numbers">5</button>
+                <button class="numbers">6</button>
+                <button class="not-digits operator">-</button>
 
-                <button id="one">1</button>
-                <button id="two">2</button>
-                <button id="three">3</button>
-                <button id="add" class="not-digits">+</button>
+                <button class="numbers">1</button>
+                <button class="numbers">2</button>
+                <button class="numbers">3</button>
+                <button class="not-digits operator">+</button>
 
                 <div></div>
-                <button id="zero">0</button>
-                <button id="point">.</button>
+                <button class="numbers">0</button>
+                <button class="numbers">.</button>
                 <button id="equals" class="not-digits">=</button>
             </div>
         </div>

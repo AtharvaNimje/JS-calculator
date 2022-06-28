@@ -10,6 +10,7 @@ body {
 
 .main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -59,10 +60,16 @@ button {
     color: orange;
 }
 
-#equals {
+#equals, button:active {
+    align-self: center;
+    justify-self: center;
     width: 70px;
     height: 70px;
     background-color: orange;
     border-radius: 50%;
     color: white;
+}
+
+button:active {
+    background-color: lightcoral;
 }
